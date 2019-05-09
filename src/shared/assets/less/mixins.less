@@ -1,0 +1,235 @@
+// @powder: #fffdf8;
+// @magenta: #da1b60;
+// @cerulean: #047e9a;
+// @charcoal: #36494e; 
+@dark-imperial-blue: #033F63; 
+// @ube: #8783D1; 
+// @coal: #1f1d1e; 
+// @buttercup: #fcee0e; 
+// @white: #fff;
+// @turquoise: #3ed3cf;
+// @seafoam: #1fe9ae;
+// @goldenrod: #ff8a00;
+
+@spanish-grey: #9a8f97;
+@x11-grey: #c3baba;
+@platinum: #e9e3e6;
+@ash-grey: #b2b2b2;
+@nickel: #736f72;
+
+@peach: #ea5c58;
+
+// @darcoal: #2a2e2b;
+@black-leather-jacket: #253031;
+// @zinnwaldite-brown: #251605;
+
+.system() {
+    font-family: system ,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+}
+
+.grid-breakpoints() {
+    @xs: 0;
+    @sm: 480px;
+    @md: 768px;
+    @lg: 1200px;
+    @xl: 2200px;
+};
+
+@diff: .grid-breakpoints[@xl] - .grid-breakpoints[@sm];
+@unitlessDiff: unit(@diff);
+@max-base: 12;
+@min-base: 6;
+@base-diff: @max-base - @min-base;
+// WARNING: Always update the @baseline/@b variables and .basis() in conjunction.
+@b: calc( ((100vw - .grid-breakpoints[@sm]) / @unitlessDiff) * @base-diff + .px(@min-base)[]);
+// @baseline: 6px;
+@baseline: @b;
+.basis(@scalar) {
+    // @return: calc(@baseline * @scalar);
+    // WARNING: Always update the @baseline/@b variables and .basis() in conjunction.
+    @return: calc( (((100vw - .grid-breakpoints[@sm]) / @unitlessDiff) * @base-diff + .px(@min-base)[]) * @scalar)
+}
+
+// TODO: Fix. This only works with px. See if that can be changed.
+.interpolate(@min; @max) {
+    @user-diff: unit(@max - @min);
+    // @unitlessMin: unit
+    // @return: calc(@baseline * @scalar);
+    // WARNING: Always update the @baseline/@b variables and .basis() in conjunction.
+    @return: calc( (((100vw - .grid-breakpoints[@sm]) / @unitlessDiff) * @user-diff + @min))
+}
+
+@spacing: {
+    no:      0;
+    xxs:     1 * @baseline;
+    xs:      2 * @baseline;
+    sm:      3 * @baseline;
+    md:      4 * @baseline;
+    lg:      5 * @baseline;
+    xl:      7 * @baseline;
+    xxl:     10 * @baseline;
+    xxxl:    11 * @baseline;
+};
+
+// height: calc(@dashboard-height ~"-" (@i * (@dashlet-header-height + @dashboard-margin + @dashlet-border)));
+// which will result in e.g. height: calc(90.5% - 36px);
+
+.min-font-sizes() {
+    @card:            6;
+    @cardTitle:       12;
+    @cardSubtitle:    8;
+    @xs:              10;
+    @sm:              12.5;
+    @md:              15;
+    @venti:           22.5;
+    @tetra:           36;
+    // @giga:            52.5;
+    @giga:            60;
+};
+
+.max-font-sizes() {
+    @card:            30;
+    @cardTitle:       60;
+    @cardSubtitle:    40;
+    @xs:              20;
+    @sm:              25;
+    @md:              30;
+    @venti:           45;
+    @tetra:           72;
+    @giga:           108;
+};
+
+.overlay(@color: @magenta) {
+    &::before {
+        content: ' ';
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+        background: repeating-linear-gradient(transparent, transparent calc(@baseline - 1px), @color calc(@baseline - 1px), @color @baseline);
+        z-index: 1000;
+        pointer-events: none;
+    }
+}
+
+
+// Height
+// Standard usage:
+// height: .height(md)[];
+// This is here to ensure that you are sticking to your normalization.
+.height(@multiple) {
+    @return: @baseline * @multiple;
+}
+
+// px
+// Standard usage:
+// font-size: .px(@min-fz)[];
+// Converts the given scalar to px.
+.px(@scalar) {
+    @return: @scalar * 1px;
+}
+
+// p
+// Standard usage:
+// font-size: .p(@min-width)[];
+// Converts the given scalar to percent.
+.p(@scalar) {
+    @return: @scalar * 1%;
+}
+
+// above
+// Standard usage:
+//.above(560px; {
+//    background: red;
+// });
+// OR:
+// .above(md, {
+//    background: red;
+// });
+.above(@width; @rules) when not (isnumber(@width)) {
+    @media screen and (min-width: .grid-breakpoints[@@width]) {
+        @rules();
+    }
+}
+
+.above(@width; @rules) when (isnumber(@width)) {
+    @media screen and (min-width: @width) {
+        @rules();
+    }
+}
+
+.below(@width; @rules) when not (isnumber(@width)) {
+    @media screen and (max-width: .grid-breakpoints[@@width] - 1px) {
+        @rules();
+    }
+}
+
+.below(@width; @rules) when (isnumber(@width)) {
+    @media screen and (max-width: @width) {
+        @rules();
+    }
+}
+
+// aria :focus-visible
+// Standard usage:
+// .aria-visible();
+// Use this to visually hide something that you want to be visible to screen readers.
+// Cafrefully consider if thats something you want to do.
+.aria-visible() {
+    clip-path: inset(100%);
+    clip: rect(1px 1px 1px 1px); /* IE 6/7 */
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap; /* added line */
+    width: 1px;
+}
+
+// fz (font-size)
+// Standard usage:
+// .fz(venti);
+// Outputs styles which will gracefully scale between the minimum font-size at the minimum screen size and the maximum
+// font-size at the maximum screen size. Outside screen size limits will default to the appropriate font-size extreme.
+.fz(@key) {
+    @min-fz: .min-font-sizes[@@key];
+    @max-fz: .max-font-sizes[@@key];
+
+    font-size: .px(@min-fz)[];
+
+    .above(sm; {
+        @diff: .grid-breakpoints[@xl] - .grid-breakpoints[@sm];
+        @font-diff: @max-fz - @min-fz;
+        // @font-size: calc( ((100vw - .grid-breakpoints[@sm]) / @unitlessDiff) * @font-diff + .px(@min-fz)[]);
+        font-size: calc( ((100vw - .grid-breakpoints[@sm]) / @unitlessDiff) * @font-diff + .px(@min-fz)[]);
+    });
+
+    .above(xl; {
+        font-size: .px(@max-fz)[];
+    });
+}
+
+// Responsive ratio
+// Standard usage:
+// @include ratio(16; 9);
+// @include ratio(16; 9; true);
+.ratio(@x; @y; @pseudo: false) when (@pseudo = true) {
+    @padding: unit((@y / @x) * 100, %);
+    &::before {
+        content: ' ';
+        display: block;
+        position: relative;
+        width: 100%;
+        padding-top: @padding;
+    }
+}
+
+.ratio(@x; @y; @pseudo: false) when not (@pseudo = true) {
+    @padding: unit((@y / @x) * 100, %);
+    padding-top: @padding;
+}
