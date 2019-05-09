@@ -48,6 +48,7 @@ const build = async () => {
         await clientPromise
 
         console.log(chalk.magenta('\nCompilation done!'))
+        process.exit(0)
     } catch (error) {
         console.log(chalk.red(error))
         process.exit(1)
