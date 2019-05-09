@@ -7,16 +7,20 @@ class Header extends React.Component {
     render() {
         return (
             <nav className={styles.header} >
-                <NavLink className={styles.navlink} to="/" exact>
-                    Home
-                </NavLink>
-                <NavLink className={styles.navlink} to="/admin" exact>
-                    Admin
-                </NavLink>
+                <div className={styles.layout}>
+                    <NavLink className={styles.navlink} to="/" exact>
+                        Home
+                    </NavLink>
+                    <NavLink className={styles.navlink} to="/not-a-page" exact>
+                        404
+                    </NavLink>
+                    <NavLink className={styles.navlink} to="/418" exact>
+                        418
+                    </NavLink>
+                </div>
             </nav>
         )
     }
 }
 
-// TODO: Router?
-export default withRouter(Header)
+export default Header

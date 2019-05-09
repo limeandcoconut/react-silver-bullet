@@ -12,17 +12,17 @@
 }
 
 html, body {
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
     margin: 0;
     padding: 0;
     font-size: .basis(3)[];
     .system();
     font-display: swap;
+    background-color: @platinum;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    .font()
 }
 
 :global(.hidden-md) {
@@ -76,10 +76,12 @@ button {
 }
 
 a, :global(.link) {
-    color: @dark-imperial-blue;
+    color: @black-leather-jacket;
     text-decoration: underline;
     
     &:focus, &:hover, &:global(.active) {
+        color: @dark-imperial-blue;
         text-decoration: underline;
+        text-decoration-color: @cerulean;
     }
 }

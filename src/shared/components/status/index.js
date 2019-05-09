@@ -22,7 +22,7 @@ const Status = ({code = 418, children}) => (
                         className={styles.meme}
                         src={`https://http.cat/${code}`}
                     />
-                    { code === 418 && 'Yeah you are little guy. Yeah you are. 😊'}
+                    { code === 418 && 'Yeah you are, little guy. Yeah you are. 😊'}
                     {children}
                 </div>
             )
