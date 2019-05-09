@@ -15,7 +15,7 @@
 		"build:stats": "NODE_ENV=production LITE_BUILD=true MUTE_PACK=true webpack --config config/webpack.config.js/client.prod.js --json > build/client/static/bundle-stats.json",
 		"start": "NODE_ENV=development node scripts/start.js",
 		"start:analyzer": "webpack-bundle-analyzer build/client/static/bundle-stats.json",
-        "start:prod-test": "NODE_ENV=production LIVE_GA=true node build/server/server.js"
+		"start:prod-test": "NODE_ENV=production LIVE_GA=true node build/server/server.js"
 	},
 	"moduleRoots": [
 		"src/client",
@@ -31,6 +31,7 @@
 		"dont-sniff-mimetype": "^1.0.0",
 		"dotenv": "^6.2.0",
 		"express": "^4.16.4",
+		"express-manifest-helpers": "^0.6.0",
 		"express-static-gzip": "^1.1.3",
 		"feature-policy": "^0.2.0",
 		"frameguard": "^3.1.0",
