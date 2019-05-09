@@ -10,6 +10,10 @@ node_modules_*
 # Certs
 certs/
 certsbackup/
+# ignorance shouldn't hurt people if we can help it
+cirts/ 
+cirtsbackup/
+
 
 # Keys
 keys.js
