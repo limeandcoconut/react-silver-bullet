@@ -11,6 +11,8 @@ module.exports = {
     target: 'node',
     entry: {
         server: [
+            require.resolve('core-js/stable'),
+            require.resolve('regenerator-runtime/runtime'),
             path.resolve(paths.srcServer, 'index.js'),
         ],
     },

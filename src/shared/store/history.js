@@ -1,5 +1,4 @@
-import createMemoryHistory from 'history/createMemoryHistory'
-import createBrowserHistory from 'history/createBrowserHistory'
+import {createMemoryHistory, createBrowserHistory} from 'history'
 
 /**
  * Create a history object for store and router. Returns a browser history on client, memory history on server.

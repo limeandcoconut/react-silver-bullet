@@ -9,6 +9,8 @@ module.exports = {
     target: 'web',
     entry: {
         bundle: [
+            require.resolve('core-js/stable'),
+            require.resolve('regenerator-runtime/runtime'),
             `${paths.srcClient}/index.js`,
         ],
     },
