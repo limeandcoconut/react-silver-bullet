@@ -50,8 +50,8 @@ class App extends React.Component {
                         <meta name="theme-color" content={siteMeta.color} id="theme_color" />
                         <meta name="msapplication-TileColor" content={siteMeta.color} />
                         <meta name="msapplication-TileImage" content={siteMeta.favicons.ms} />
+                        <link rel="shortcut icon" href={siteMeta.favicons.default} />
                         {process.env.NODE_ENV === 'production' && <link rel="manifest" href={siteMeta.manifest} /> }
-                        {process.env.NODE_ENV === 'production' && <link rel="shortcut icon" href={siteMeta.favicons.default} /> }
                         {process.env.NODE_ENV === 'production' && <link rel="icon" type="image/png" sizes="32x32" href={siteMeta.favicons.x32} /> }
                         {process.env.NODE_ENV === 'production' && <link rel="icon" type="image/png" sizes="16x16" href={siteMeta.favicons.x16} /> }
                         <link rel="apple-touch-icon" sizes="180x180" href={siteMeta.favicons.apple} />

@@ -18,6 +18,10 @@ import csp from 'helmet-csp'
 import ieNoOpen from 'ienoopen'
 import noSniff from 'dont-sniff-mimetype'
 import xssFilter from 'x-xss-protection'
+import siteMeta from '../../config/meta.js'
+
+let {favicons: {default: faviconPath}} = siteMeta
+faviconPath = faviconPath.split('?v')[0]
 
 require('dotenv').config()
 
@@ -33,6 +37,8 @@ if (process.env.NODE_ENV === 'development') {
         index: false,
         orderPreference: ['br'],
     }))
+
+    app.use('/favicon.ico', express.static(path.join(paths.sharedMeta, faviconPath)))
 }
 
 // Don't bother with security on dev
