@@ -36,6 +36,7 @@ const serverRenderer = () => (request, response) => {
                     css={[response.locals.assetPath('bundle.css'), response.locals.assetPath('vendor.css')]}
                     scripts={[response.locals.assetPath('bundle.js'), response.locals.assetPath('vendor.js')]}
                     state={state}
+                    scriptNonce ={response.locals.scriptNonce}
                 >
                     {content}
                 </Html>

@@ -5,7 +5,8 @@ import Helmet from 'react-helmet'
 export default class HTML extends React.Component {
     render() {
         const head = Helmet.renderStatic()
-        const {children, scripts = [], css = [], state = {}} = this.props
+        const {children, scripts = [], css = [], state = {}, scriptNonce = null} = this.props
+
         return (
             <html lang="en">
                 <head>
@@ -19,6 +20,7 @@ export default class HTML extends React.Component {
                         return <link key={href} rel="stylesheet" href={href} />
                     })}
                     <script
+                        nonce={scriptNonce}
                         dangerouslySetInnerHTML={{
                             __html: `window.__PRELOADED_STATE__ = ${state}`,
                         }}

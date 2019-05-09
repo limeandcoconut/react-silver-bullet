@@ -17,6 +17,7 @@ import csp from 'helmet-csp'
 import ieNoOpen from 'ienoopen'
 import noSniff from 'dont-sniff-mimetype'
 import xssFilter from 'x-xss-protection'
+import {randomId} from './utils.js'
 import siteMeta from '../../config/meta.js'
 
 let {favicons: {default: faviconPath}} = siteMeta
@@ -42,7 +43,7 @@ if (process.env.NODE_ENV === 'development') {
 
 // Don't bother with security on dev
 if (process.env.NODE_ENV === 'production') {
-// Setup feature policy
+    // Setup feature policy
     const contentNone = ['\'none\'']
     app.use(featurePolicy({
         features: {
@@ -54,6 +55,11 @@ if (process.env.NODE_ENV === 'production') {
     }))
 
     // Set up content-security-policy
+    app.use((request, response, next) => {
+        response.locals.scriptNonce = randomId()
+        next()
+    })
+
     // TODO: Add this to config
     const contentSelf = ['\'self\'', 'local.jacobsmith.tech', 'blob:', 'data:']
     const contentAnalytics = ['*.google-analytics.com', 'google-analytics.com']
@@ -67,7 +73,7 @@ if (process.env.NODE_ENV === 'production') {
             connectSrc: contentSelf.concat(contentAnalytics),
             // TODO: Add a report URI
             // reportUri
-            scriptSrc: contentSelf.concat(contentAnalytics, '\'unsafe-inline\''),
+            scriptSrc: contentSelf.concat(contentAnalytics, (request, response) => `'nonce-${response.locals.scriptNonce}'`),
         },
     }))
 

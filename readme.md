@@ -126,7 +126,7 @@ chunkFilename: '[name].[chunkhash:8].chunk.js',
 ```
 
 ## TODOS:
-- [ ] Fix the `'unsafe-inline'` in the csp with hashes <br>
+- [x] Fix the `'unsafe-inline'` in the csp with hashes <br>
 - [ ] Write them tests  <br>
 - [ ] Continuous integration <br>
 - [ ] Add @throws to jodocs <br>
