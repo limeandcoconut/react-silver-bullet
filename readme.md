@@ -49,7 +49,7 @@ HAProxy is the tls terminator and reverse proxy.
 1. Then run `config/init.sh`
 1. Change the created `config/keys.js` to have your own values.
 1. `$ docker-compose up -d` to start haproxy and nginx.
-1. `$ npm run start` for development, `$ npm run build && npm run start:prod-test` for production.
+1. `$ npm run start` for development, `$ npm run build && npm run start:live` for production.
     > In production I'm using [pm2] 
 
 ## Configuration
@@ -89,11 +89,13 @@ There are a few `process.env' variables in use (in order of importance).
 
 ## Scripts
 
-`start`: Start the app in development mode. With HMR for client and webpack watching the server.
+`start`: Start the app in development mode with HMR for client and webpack watching the server.
 
-`start:prod-test`: Start the production server. (I suggest [pm2] for production)
+`start:live`: Start the production server. (I suggest [pm2] for actual production)
 
-`build`: Do a production build of the site.
+`build`: Do a production build of the site. 
+
+`build:live`: Do a production build of the site **with live analytics**.
 
 `build:lite`: Build without heavier production plugins for a quick test. 💯Calories only!
 
