@@ -1,6 +1,6 @@
 {
 	"name": "react-silver-bullet",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"author": "Jacob Smith <js@jacobsmith.tech> (https://github.com/limeandcoconut)",
 	"license": "ISC",
 	"engines": {
@@ -15,7 +15,7 @@
 		"build:stats": "NODE_ENV=production LITE_BUILD=true MUTE_PACK=true webpack --config config/webpack.config.js/client.prod.js --json > build/client/static/bundle-stats.json",
 		"start": "NODE_ENV=development node scripts/start.js",
 		"start:analyzer": "webpack-bundle-analyzer build/client/static/bundle-stats.json",
-		"start:prod-test": "NODE_ENV=production LIVE_GA=true node build/server/server.js"
+        "start:prod-test": "NODE_ENV=production LIVE_GA=true node build/server/server.js"
 	},
 	"moduleRoots": [
 		"src/client",
