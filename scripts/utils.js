@@ -4,6 +4,7 @@
  * @param  {string} name     The name of the complier.
  * @param  {object} compiler The webpack compiler to wait for.
  * @return {promise}  A promise that reolves when the given complier completes.
+ * @throws {Error} Throws if compilation fails.
  */
 const compilerPromise = (name, compiler) => {
     return new Promise((resolve, reject) => {

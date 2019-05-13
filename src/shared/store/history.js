@@ -1,4 +1,5 @@
 import {createMemoryHistory, createBrowserHistory} from 'history'
+/* global __BROWSER__ */
 
 /**
  * Create a history object for store and router. Returns a browser history on client, memory history on server.
