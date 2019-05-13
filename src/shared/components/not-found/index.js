@@ -1,6 +1,11 @@
 import * as React from 'react'
 import Status from '../status'
 
+/**
+ * @module
+ * @class
+ * @extends React.Component
+ */
 const NotFound = () => (
     <Status code={404}>
         <>

@@ -1,7 +1,11 @@
-/* eslint-disable react/no-danger */
 import * as React from 'react'
 import Helmet from 'react-helmet'
 
+/**
+ * @module
+ * @class
+ * @extends React.Component
+ */
 export default class HTML extends React.Component {
     render() {
         const head = Helmet.renderStatic()

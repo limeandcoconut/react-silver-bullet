@@ -1,3 +1,4 @@
+/** @module */
 const description = 'A silver bullet boilerplate.' // eslint-diable-line max-len
 
 // NOTE: This file is included in client. Don't put secrets in here. They go in keys.js

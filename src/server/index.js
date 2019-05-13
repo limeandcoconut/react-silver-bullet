@@ -156,4 +156,5 @@ app.listen(process.env.PORT, () => {
     )
 })
 
+/** @module app */
 export default app

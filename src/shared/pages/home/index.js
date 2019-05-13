@@ -4,6 +4,11 @@ import Helmet from 'react-helmet'
 import styles from './home.module.less'
 import {productionHost} from '../../../../config/config.js'
 
+/**
+ * @module
+ * @class
+ * @extends React.Component
+ */
 class Home extends React.Component {
 
     render() {

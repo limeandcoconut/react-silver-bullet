@@ -2,6 +2,8 @@ const fs = require('fs')
 const path = require('path')
 const paths = require('./paths')
 
+/** @module env */
+
 delete require.cache[require.resolve('./paths')]
 
 if (!process.env.NODE_ENV) {
@@ -31,6 +33,13 @@ process.env.NODE_PATH = (process.env.NODE_PATH || '')
 .map((folder) => path.resolve(appDirectory, folder))
 .join(path.delimiter)
 
+// TODO: This could use better docs.
+/**
+ * Stringify env vars and reduce them to an array for use with WebpackDefinePlugin
+ * @link ./plugins.js
+ * @function
+ * @return {object} An object containing `raw` and `stringified` env vars.
+ */
 module.exports = () => {
     // Define env vars you want to use in your CLIENT app here.
     const raw = {

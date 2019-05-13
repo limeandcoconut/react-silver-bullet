@@ -132,8 +132,10 @@ chunkFilename: '[name].[chunkhash:8].chunk.js',
 - [x] Fix the `'unsafe-inline'` in the csp with hashes <br>
 - [ ] Write them tests  <br>
 - [ ] Continuous integration <br>
-- [ ] Add @throws to jodocs <br>
-- [ ] Add @module to jsdocs <br>
+- [ ] [Spruce up jodocs](https://devhints.io/jsdoc) <br>
+- [ ] Change to destructure sntax jsdoc where applicable https://github.com/microsoft/TypeScript/pull/30089 <br>
+- [x] Add @throws to jodocs <br>
+- [x] Add @module to jsdocs <br>
 - [ ] Switch to fastify 🐯 <br>
 - [ ] Add aria-attributes <br>
 - [ ] Add structured data of some kind <br>

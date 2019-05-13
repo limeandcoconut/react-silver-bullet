@@ -6,6 +6,7 @@ import Html from './components/HTML'
 import App from '../shared/app'
 
 /**
+ * @module serverRenderer
  * @function serverRenderer
  * @param {object} request Express like request object.
  * @param {object} response Express like response object.

@@ -1,3 +1,5 @@
+/** @module scripts/utils */
+
 /**
  * Get a promise that reolves when the given complier completes. Plus logging.
  * @function compilerPromise

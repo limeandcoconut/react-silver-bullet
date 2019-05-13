@@ -9,7 +9,12 @@ import Toast from './components/toast'
 import {productionHost} from '../../config/config.js'
 import siteMeta from '../../config/meta'
 import path from 'path'
-
+/**
+ * Exports HOC withrouter(connect()(App))
+ * @module
+ * @class
+ * @extends React.Component
+ */
 class App extends React.Component {
 
     render() {

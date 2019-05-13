@@ -1,5 +1,6 @@
 import crypto from 'crypto'
 const epoch = Math.floor(new Date(new Date().getFullYear(), 0, 1).getTime() / 1000)
+/** @module server/utils */
 
 /**
  * Generates a URL safe, 29 character long unique ID based on 64 bits of random

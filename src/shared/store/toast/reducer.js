@@ -1,5 +1,7 @@
 import {produce} from 'immer'
 
+/** @module */
+
 export const initialState = Object.freeze({
     display: false,
     message: '',

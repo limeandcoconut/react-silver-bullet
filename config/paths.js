@@ -1,6 +1,8 @@
 const path = require('path')
 const fs = require('fs')
 
+/** @module paths */
+
 const rootPath = process.cwd()
 
 const appDirectory = fs.realpathSync(rootPath)

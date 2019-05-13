@@ -4,6 +4,7 @@ const gaDevID = 'UA-#########-#'
 const gaProductionID = 'UA-#########-#'
 
 // NOTE: This file is included in client. Don't put secrets in here. They go in keys.js
+/** @module config */
 module.exports = {
     productionHost,
     gaID: process.env.LIVE_GA === 'true' ? gaProductionID : gaDevID,

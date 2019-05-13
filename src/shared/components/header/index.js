@@ -1,7 +1,12 @@
 import * as React from 'react'
-import {NavLink, withRouter} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 import styles from './header.module.less'
 
+/**
+ * @module
+ * @class
+ * @extends React.Component
+ */
 class Header extends React.Component {
 
     render() {

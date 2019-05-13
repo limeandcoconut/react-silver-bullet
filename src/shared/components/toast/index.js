@@ -4,6 +4,12 @@ import {connect} from 'react-redux'
 import {hideToast} from '../../store/toast/actions'
 import {withRouter} from 'react-router-dom'
 
+/**
+ * Exports HOC withrouter(connect()(Toast))
+ * @module
+ * @class
+ * @extends React.Component
+ */
 class Toast extends React.Component {
     componentDidMount() {
         this.unlisten = this.props.history.listen(this.props.hideToast)

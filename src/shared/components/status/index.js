@@ -4,6 +4,11 @@ import styles from './status.module.less'
 import Helmet from 'react-helmet'
 
 // Yeah it's total rubbish but I'm willing to have some fun here
+/**
+ * @module
+ * @function
+ * @return {object} A route to a status code handler
+ */
 const Status = ({code = 418, children}) => (
     <Route
         render={({staticContext}) => {

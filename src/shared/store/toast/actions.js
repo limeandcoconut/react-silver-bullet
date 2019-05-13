@@ -1,3 +1,5 @@
+/** @module */
+
 /**
  * Action creator
  * @function showToast
