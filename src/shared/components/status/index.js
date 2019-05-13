@@ -3,7 +3,7 @@ import {Route} from 'react-router-dom'
 import styles from './status.module.less'
 import Helmet from 'react-helmet'
 
-// Yeah it's total rubbish but I'm willing to have some fun here
+// Yeah 418 is total rubbish but I'm willing to have some fun here
 /**
  * @module
  * @function

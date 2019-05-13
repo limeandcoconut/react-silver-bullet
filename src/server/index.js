@@ -148,12 +148,8 @@ app.use((error, request, response, /* next */) => {
 })
 
 app.listen(process.env.PORT, () => {
-    console.log(
-        `[${new Date().toISOString()}]`,
-        chalk.blue(
-            `App is running: 🌎 ${process.env.HOST}:${process.env.PORT}`
-        )
-    )
+    console.log(`[${new Date().toISOString()}]\n` +
+    `Running in ${chalk.magenta(process.env.NODE_ENV)} mode: 🌎 ${chalk.blue(`${process.env.HOST}:${process.env.PORT}`)}`)
 })
 
 /** @module app */
