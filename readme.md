@@ -1,7 +1,7 @@
 # [![100 on all Google Lighthouse tests](/src/shared/assets/meta/og-image.png)](https://recat.jacobsmith.tech)
 
 ## Overview
-This is a React progressive web app boilerplate - [there are literally hundreds of others out there.](https://www.javascriptstuff.com/react-starter-projects/). I created this based off work by [Manuel Bieh]((https://github.com/manuelbieh/react-ssr-setup)) to have one central repo I can base my React projects on. It parallels my [Vue boilerplate](https://github.com/limeandcoconut/pwa-boilerplate) (at least in theory)<!-- TODO: fix this -->. 
+This is a React progressive web app boilerplate - [there are literally hundreds of others out there.](https://www.javascriptstuff.com/react-starter-projects/). I created this based off work by [Manuel Bieh](https://github.com/manuelbieh/react-ssr-setup) to have one central repo I can base my React projects on. It parallels my [Vue boilerplate](https://github.com/limeandcoconut/pwa-boilerplate) (at least in theory)<!-- TODO: fix this -->. 
 
 This project is designed to be, extendable, comprehensible, and powerful. It supports server side rendering, hot module reloading, font preloading, and a slew of other awesome 🕶 features. It's [highly configurable](#configuration) too!
 
