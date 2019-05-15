@@ -129,7 +129,7 @@ chunkFilename: '[name].[chunkhash:8].chunk.js',
 
 ## TODOS:
 - [x] Bring in manifest helpers package
-- [x] Fix the `'unsafe-inline'` in the csp with hashes <br>
+- [x] Fix the `'unsafe-inline'` in the csp with a nonce <br>
 - [ ] Write them tests  <br>
 - [ ] Continuous integration <br>
 - [x] [Spruce up jodocs](https://devhints.io/jsdoc) <br>

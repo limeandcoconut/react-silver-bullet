@@ -1,5 +1,21 @@
 ## [Unreleased]
 
+## [1.2.0] - 2019-05-15
+### Changed
+- Fixed `'unsafe-inline'` in CSP with [nonce](src/server/index.js).
+- Moved to [express-manifest-helpers](https://github.com/danethurber/express-manifest-helpers) after [security fix](https://github.com/danethurber/express-manifest-helpers/pull/4).
+- Full dependency update.
+- Improved jsDoc somewhat.
+### Removed
+- src/server/middleware/manifest-helpers.js
+### Added
+- npm script `start:live`.
+### Depreciated
+- npm script `start:prod-test` is depreciated. Use `start:live` instead.
+### Security
+-  See CSP above.
+
+
 ## [1.1.0] - 2019-05-08
 ### Changed
 - Dropping @babel/polyfill in favor of core-js 3 since [@babel/polyfill is now deprecated](https://github.com/zloirock/core-js/blob/master/docs/2019-03-19-core-js-3-babel-and-a-look-into-the-future.md#babelpolyfill)
@@ -22,3 +38,4 @@
 
 
 
+echo -e "\033[1;31m This is red text \033[0m"
