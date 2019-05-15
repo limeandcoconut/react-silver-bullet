@@ -7,6 +7,9 @@ import Helmet from 'react-helmet'
 /**
  * @module
  * @function
+ * @param {object} parameters A parameter object
+ * @param {number} parameters.code [code=418] An http status code to render
+ * @param {object} parameters.children Child components to render
  * @return {object} A route to a status code handler
  */
 const Status = ({code = 418, children}) => (

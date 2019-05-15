@@ -8,7 +8,7 @@ import {routerMiddleware} from 'connected-react-router'
  * Setup the store, import reducers, inline initialState, manage devtool integration.
  * @function configureStore
  * @param  {object} initialState The state of the app on store creation. Default: empty object.
- * @param  {array} middleware    An array of midlewares to add to composeEnhancers. Default: empty array.
+ * @param  {object[]} middleware    An array of midlewares to add to composeEnhancers. Default: empty array.
  * @param  {object} history      A history to be passed to routerMiddleware and createRootReducer. Required.
  * @return {object} The completed store.
  */

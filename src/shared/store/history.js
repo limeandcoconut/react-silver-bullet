@@ -4,7 +4,8 @@ import {createMemoryHistory, createBrowserHistory} from 'history'
 /**
  * Create a history object for store and router. Returns a browser history on client, memory history on server.
  * @function createUniversalHistory
- * @param  {array} initialEntries An array of history entiries to start with.
+ * @param {object} parameters [parameters={}] A parameter object
+ * @param {object[]} parameters.initialEntries [initialEntries=[]] An array of history entiries to start with.
  * @return {object} A history object.
  */
 export const createUniversalHistory = ({initialEntries = []} = {}) => {
