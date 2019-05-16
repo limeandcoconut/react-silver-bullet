@@ -17,7 +17,7 @@ class Header extends React.Component {
                         Home
                     </NavLink>
                     <NavLink className={styles.navlink} to="/not-a-page" exact>
-                        404
+                        404 Test
                     </NavLink>
                     <NavLink className={styles.navlink} to="/418" exact>
                         418

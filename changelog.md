@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [1.3.1] - 2019-05-15
+### Changed
+- Changed link title in header so 404 doesn't look like a real page
+
 ## [1.3.0] - 2019-05-15
 ### Changed
 - Swapped to fastify from express.
