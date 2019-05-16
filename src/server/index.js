@@ -1,28 +1,14 @@
 import fastify from 'fastify'
-import serveStatic from 'serve-static'
 import path from 'path'
-import chalk from 'chalk'
+import paths from '../../config/paths'
 import manifestHelpers from 'express-manifest-helpers'
 import {configureStore} from '../shared/store'
-import serverRender from './render'
-import paths from '../../config/paths'
+import serverRender from './middleware/ssr-handler'
+import securityMiddleware from './middleware/security'
+import serveStaticMiddleware from './middleware/static'
 import bodyParser from 'body-parser'
 import createHistory from '../shared/store/history'
-
-import expressStaticGzip from 'express-static-gzip'
-
-import featurePolicy from 'feature-policy'
-import frameguard from 'frameguard'
-import hsts from 'hsts'
-import csp from 'helmet-csp'
-import ieNoOpen from 'ienoopen'
-import noSniff from 'dont-sniff-mimetype'
-import xssFilter from 'x-xss-protection'
-import {randomId} from './utils.js'
-import siteMeta from '../../config/meta.js'
-
-let {favicons: {default: faviconPath}} = siteMeta
-faviconPath = faviconPath.split('?v')[0]
+import chalk from 'chalk'
 
 require('dotenv').config()
 
@@ -31,73 +17,11 @@ process.env.PORT = process.env.PORT || 8500
 
 const app = fastify()
 
-// Use Nginx to serve static assets in production
+// Skip Ngninx on dev, do CSP and security stuff on production
 if (process.env.NODE_ENV === 'development') {
-    app.use(paths.publicPath, expressStaticGzip(path.join(paths.clientBuild, paths.publicPath), {
-        enableBrotli: true,
-        index: false,
-        orderPreference: ['br'],
-    }))
-
-    app.use('/favicon.ico', serveStatic(path.join(paths.sharedMeta, faviconPath)))
-}
-
-// Don't bother with security on dev
-if (process.env.NODE_ENV === 'production') {
-    // Setup feature policy
-    const contentNone = ['\'none\'']
-    app.use(featurePolicy({
-        features: {
-            camera: [...contentNone],
-            geolocation: [...contentNone],
-            microphone: [...contentNone],
-            payment: [...contentNone],
-        },
-    }))
-
-    // Set up content-security-policy
-    app.use((request, response, next) => {
-        response.locals.scriptNonce = randomId()
-        next()
-    })
-
-    // TODO: Add this to config
-    const contentSelf = ['\'self\'', 'local.jacobsmith.tech', 'blob:', 'data:']
-    const contentAnalytics = ['*.google-analytics.com', 'google-analytics.com']
-    const contentFonts = ['*.fonts.gstatic.com', 'fonts.gstatic.com']
-    app.use(csp({
-        directives: {
-            defaultSrc: contentSelf.concat(contentAnalytics),
-            fontSrc: contentSelf.concat(contentFonts),
-            imgSrc: contentSelf.concat(contentAnalytics, 'http.cat'),
-            prefetchSrc: contentSelf.concat(contentFonts),
-            connectSrc: contentSelf.concat(contentAnalytics),
-            // TODO: Add a report URI
-            // reportUri
-            scriptSrc: contentSelf.concat(contentAnalytics, (request, response) => `'nonce-${response.locals.scriptNonce}'`),
-        },
-    }))
-
-    // Prevent iframes embedding this page
-    app.use(frameguard({action: 'deny'}))
-
-    // Set up hsts
-    // Sets "Strict-Transport-Security: max-age=5184000; includeSubDomains".
-    // const sixtyDaysInSeconds = 5184000
-    // app.use(hsts({
-    //   maxAge: sixtyDaysInSeconds
-    // }))
-
-    // Used for an old ie thing
-    app.use(ieNoOpen())
-    // Don't sniff mimetype
-    app.use(noSniff())
-
-    // Prevent xss reflection
-    // Sets "X-XSS-Protection: 1; mode=block".
-    app.use(xssFilter())
-    // TODO: Add reporting
-    // app.use(xssFilter({ reportUri: '/report-xss-violation' }))
+    app.register(serveStaticMiddleware)
+} else if (process.env.NODE_ENV === 'production') {
+    app.register(securityMiddleware)
 }
 
 app.use(bodyParser.json())
