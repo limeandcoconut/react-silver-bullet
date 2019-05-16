@@ -1,5 +1,19 @@
 ## [Unreleased]
 
+## [1.3.0] - 2019-05-15
+### Changed
+- Swapped to fastify from express.
+- **Notably**: fastify doesn't expose the same request and response so use `request.req` and `reply.locals` in a [few](src/server/index.js) [places](src/server/render.js).
+- Remember this changed the start script too.
+- Moved security setup and static asset setup fastify middlewares.
+- Moved the `src/server/render.js` to `src/server/middleware/ssr-handler.js`
+- Fixed link to Manuel in readme.
+### Removed
+- express
+### Added
+- fastify
+- serve-static
+
 ## [1.2.0] - 2019-05-15
 ### Changed
 - Fixed `'unsafe-inline'` in CSP with [nonce](src/server/index.js).
