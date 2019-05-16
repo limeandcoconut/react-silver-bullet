@@ -30,11 +30,12 @@ HAProxy is the tls terminator and reverse proxy.
     -   👌 Font preload and preconnecting with local fallbacks
     -   🐦 Sweeet OG and Twitter meta
 
--   Setup
+-   Cool stuff
     -   🔥 Babel 7
     <br>
 
     -   ⚛ React 16
+    -   🐯 Fastify
     -   ✅ Hot Module Reloading (HMR)
     -   ✅ Less modules
     -   ✅ PostCSS
