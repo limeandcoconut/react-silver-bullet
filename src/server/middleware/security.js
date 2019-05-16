@@ -7,6 +7,14 @@ import noSniff from 'dont-sniff-mimetype'
 import xssFilter from 'x-xss-protection'
 import {randomId} from '../utils.js'
 
+/**
+ * Middleware enforcing CSP and security best practices.
+ * @module securityMiddleware
+ * @function securityMiddleware
+ * @param  {object} app  Unencapsulated Fastify instance (exposed intentionally).
+ * @param  {object} opts Options object.
+ * @param  {function} next The function you must call when your plugin is ready.
+ */
 const securityMiddleware = (app, opts, next) => {
 
     // Setup feature policy

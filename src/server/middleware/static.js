@@ -7,6 +7,14 @@ import siteMeta from '../../../config/meta.js'
 let {favicons: {default: faviconPath}} = siteMeta
 faviconPath = faviconPath.split('?v')[0]
 
+/**
+ * Middleware to serve essential static assets when not using Nginx.
+ * @module serveStaticMiddleware
+ * @function serveStaticMiddleware
+ * @param  {object} app  Unencapsulated Fastify instance (exposed intentionally).
+ * @param  {object} opts Options object.
+ * @param  {function} next The function you must call when your plugin is ready.
+ */
 const serveStaticMiddleware = (app, opts, next) => {
     app.use(paths.publicPath, expressStaticGzip(path.join(paths.clientBuild, paths.publicPath), {
         enableBrotli: true,

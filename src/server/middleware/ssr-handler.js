@@ -7,6 +7,7 @@ import App from '../../shared/app'
 
 // This is a handler not a middlware but it seems like the right place
 /**
+ * A handler that SSRs the React app.
  * @module serverRender
  * @function serverRender
  * @param {object} request Express like request object.
