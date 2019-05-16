@@ -1,4 +1,5 @@
-import express from 'express'
+import fastify from 'fastify'
+import serveStatic from 'serve-static'
 import path from 'path'
 import chalk from 'chalk'
 import manifestHelpers from 'express-manifest-helpers'
@@ -28,7 +29,7 @@ require('dotenv').config()
 process.env.HOST = process.env.HOST || 'http://localhost'
 process.env.PORT = process.env.PORT || 8500
 
-const app = express()
+const app = fastify()
 
 // Use Nginx to serve static assets in production
 if (process.env.NODE_ENV === 'development') {
@@ -38,7 +39,7 @@ if (process.env.NODE_ENV === 'development') {
         orderPreference: ['br'],
     }))
 
-    app.use('/favicon.ico', express.static(path.join(paths.sharedMeta, faviconPath)))
+    app.use('/favicon.ico', serveStatic(path.join(paths.sharedMeta, faviconPath)))
 }
 
 // Don't bother with security on dev
@@ -79,8 +80,6 @@ if (process.env.NODE_ENV === 'production') {
 
     // Prevent iframes embedding this page
     app.use(frameguard({action: 'deny'}))
-    // Hide express
-    app.disable('x-powered-by')
 
     // Set up hsts
     // Sets "Strict-Transport-Security: max-age=5184000; includeSubDomains".
@@ -104,13 +103,23 @@ if (process.env.NODE_ENV === 'production') {
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded())
 
-// Create store
-app.use(async (request, response, next) => {
-    // Create history and store
-    const history = createHistory({initialEntries: [request.url]})
-    request.store = configureStore({history})
+// This prepares for express-manifest-helpers before it runs
+app.addHook('onRequest', (request, reply, done) => {
+    reply.res.locals = {}
+    done()
+})
 
-    return next()
+// This might be a useful crutch in the future
+// Decorate fastify request with url from request.req
+// app.decorateRequest('decorateUrl', function() {
+//     this.url = this.req.url
+// })
+
+// Create store after middlewares responded and the request will difinitely be matching against routes
+app.addHook('preHandler', (request, reply, done) => {
+    const history = createHistory({initialEntries: [request.req.url]})
+    request.store = configureStore({history})
+    done()
 })
 
 // Send asset manifest
@@ -121,31 +130,8 @@ app.use(
     })
 )
 
-// 404 and other status codes are really handled here
-app.use(serverRender())
-
-app.use((error, request, response, /* next */) => {
-    return response.status(404).json({
-        status: 'error',
-        message: error.message,
-        stack:
-            // print a nicer stack trace by splitting line breaks and making them array items
-            process.env.NODE_ENV === 'development' &&
-            (error.stack || '')
-            .split('\n')
-            .map((line) => line.trim())
-            .map((line) => line.split(path.sep).join('/'))
-            .map((line) =>
-                line.replace(
-                    process
-                    .cwd()
-                    .split(path.sep)
-                    .join('/'),
-                    '.'
-                )
-            ),
-    })
-})
+// 404 and other status codes are generally handled here at an app level
+app.get('*', serverRender)
 
 app.listen(process.env.PORT, () => {
     console.log(`[${new Date().toISOString()}]\n` +
