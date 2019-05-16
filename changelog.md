@@ -34,8 +34,3 @@
 ### Added
 - Full SSR HMR boilerplate created from previous work
 - This changelog
-
-
-
-
-echo -e "\033[1;31m This is red text \033[0m"
