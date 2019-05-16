@@ -9,15 +9,15 @@ import App from '../shared/app'
  * @module serverRenderer
  * @function serverRenderer
  * @param {object} request Express like request object.
- * @param {object} response Express like response object.
- * @return {object} The passed response.
+ * @param {object} reply Express like reply object.
+ * @return {object} The passed reply.
  */
-const serverRenderer = () => (request, response) => {
+const serverRenderer = (request, reply) => {
     const staticContext = {}
     const content = renderToString(
         <Provider store={request.store}>
 
-            <StaticRouter location={request.url} context={staticContext}>
+            <StaticRouter location={request.req.url} context={staticContext}>
                 <App />
             </StaticRouter>
 
@@ -27,17 +27,18 @@ const serverRenderer = () => (request, response) => {
     const state = JSON.stringify(request.store.getState())
 
     if (staticContext.status) {
-        response.status(staticContext.status)
+        reply.status(staticContext.status)
     }
 
-    return response.send(
+    reply.type('text/html')
+    return reply.send(
         '<!doctype html>' +
             renderToString(
                 <Html
-                    css={[response.locals.assetPath('bundle.css'), response.locals.assetPath('vendor.css')]}
-                    scripts={[response.locals.assetPath('bundle.js'), response.locals.assetPath('vendor.js')]}
+                    css={[reply.res.locals.assetPath('bundle.css'), reply.res.locals.assetPath('vendor.css')]}
+                    scripts={[reply.res.locals.assetPath('bundle.js'), reply.res.locals.assetPath('vendor.js')]}
                     state={state}
-                    scriptNonce ={response.locals.scriptNonce}
+                    scriptNonce ={reply.res.locals.scriptNonce}
                 >
                     {content}
                 </Html>

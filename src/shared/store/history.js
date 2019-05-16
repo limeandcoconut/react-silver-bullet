@@ -9,7 +9,6 @@ import {createMemoryHistory, createBrowserHistory} from 'history'
  * @return {object} A history object.
  */
 export const createUniversalHistory = ({initialEntries = []} = {}) => {
-    // TODO: Fix unedfined thing here
     if (__BROWSER__) {
         const history = window.browserHistory || createBrowserHistory({initialEntries})
         if (process.env.NODE_ENV === 'development' && !window.browserHistory) {

@@ -30,11 +30,12 @@ HAProxy is the tls terminator and reverse proxy.
     -   👌 Font preload and preconnecting with local fallbacks
     -   🐦 Sweeet OG and Twitter meta
 
--   Setup
+-   Cool stuff
     -   🔥 Babel 7
     <br>
 
     -   ⚛ React 16
+    -   🐯 Fastify
     -   ✅ Hot Module Reloading (HMR)
     -   ✅ Less modules
     -   ✅ PostCSS
@@ -126,6 +127,8 @@ chunkFilename: '[id].chunk.js',
 chunkFilename: '[name].[chunkhash:8].chunk.js',
 // For now 😤
 ```
+
+This using fastify not express so remember that fastify doesn't expose the same request and response so use `request.req` and `reply.locals` in a [few](src/server/index.js) [places](src/server/render.js).
 
 ## TODOS:
 - [x] Bring in manifest helpers package

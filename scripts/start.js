@@ -3,7 +3,8 @@ const nodemon = require('nodemon')
 const rimraf = require('rimraf')
 const promisify = require('util.promisify')
 const rimrafAsync = promisify(rimraf).bind(rimraf)
-const express = require('express')
+const fastify = require('fastify')
+const serveStatic = require('serve-static')
 const chalk = require('chalk')
 
 // Ensure this is set before webpack.config.js requires env.js downstream
@@ -65,12 +66,12 @@ const start = async () => {
         stats: clientConfig.stats,
     }
 
-    const app = express()
+    const app = fastify()
 
     // Serve hot middleware
-    app.use((request, response, next) => {
-        response.header('Access-Control-Allow-Origin', '*')
-        return next()
+    app.addHook('onRequest', (request, reply, done) => {
+        reply.header('Access-Control-Allow-Origin', '*')
+        done()
     })
 
     app.use(
@@ -83,7 +84,7 @@ const start = async () => {
 
     app.use(webpackHotMiddleware(clientCompiler))
 
-    app.use('/static', express.static(paths.clientBuild))
+    app.use('/static', serveStatic(paths.clientBuild))
 
     app.listen(WEBPACK_PORT)
 
