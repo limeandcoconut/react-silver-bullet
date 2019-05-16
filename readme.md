@@ -136,6 +136,7 @@ chunkFilename: '[name].[chunkhash:8].chunk.js',
 - [x] Change to destructure sntax jsdoc where applicable https://github.com/microsoft/TypeScript/pull/30089 <br>
 - [x] Add @throws to jodocs <br>
 - [x] Add @module to jsdocs <br>
+- [ ] Consider removing `@module` tags when nothing else is present <br>
 - [ ] Switch to fastify 🐯 <br>
 - [ ] Add aria-attributes <br>
 - [ ] Add structured data of some kind <br>
