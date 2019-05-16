@@ -140,7 +140,8 @@ This using fastify not express so remember that fastify doesn't expose the same 
 - [x] Add @throws to jodocs <br>
 - [x] Add @module to jsdocs <br>
 - [ ] Consider removing `@module` tags when nothing else is present <br>
-- [ ] Switch to fastify 🐯 <br>
+- [x] Switch to fastify 🐯 <br>
+- [ ] Split static serving and security stuff in to plugins <br>
 - [ ] Add aria-attributes <br>
 - [ ] Add structured data of some kind <br>
 - [ ] Figure out why webpack resolvers are broken in less <br>
