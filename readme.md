@@ -1,7 +1,7 @@
 # [![100 on all Google Lighthouse tests](/src/shared/assets/meta/og-image.png)](https://recat.jacobsmith.tech)
 
 ## Overview
-This is a React progressive web app boilerplate - [there are literally hundreds of others out there.](https://www.javascriptstuff.com/react-starter-projects/). I created this based off work by [Manuel Bieh](https://github.com/manuelbieh/react-ssr-setup) to have one central repo I can base my React projects on. It parallels my [Vue boilerplate](https://github.com/limeandcoconut/pwa-boilerplate) (at least in theory)<!-- TODO: fix this -->. 
+This is a React progressive web app boilerplate - [there are literally hundreds of others out there.](https://www.javascriptstuff.com/react-starter-projects/). I created this based off work by [Manuel Bieh]((https://github.com/manuelbieh/react-ssr-setup)) to have one central repo I can base my React projects on. It parallels my [Vue boilerplate](https://github.com/limeandcoconut/pwa-boilerplate) (at least in theory)<!-- TODO: fix this -->. 
 
 This project is designed to be, extendable, comprehensible, and powerful. It supports server side rendering, hot module reloading, font preloading, and a slew of other awesome 🕶 features. It's [highly configurable](#configuration) too!
 
@@ -127,6 +127,8 @@ chunkFilename: '[name].[chunkhash:8].chunk.js',
 // For now 😤
 ```
 
+This using fastify not express so remember that fastify doesn't expose the same request and response so use `request.req` and `reply.locals` in a [few](src/server/index.js) [places](src/server/render.js).
+
 ## TODOS:
 - [x] Bring in manifest helpers package
 - [x] Fix the `'unsafe-inline'` in the csp with a nonce <br>
@@ -136,6 +138,7 @@ chunkFilename: '[name].[chunkhash:8].chunk.js',
 - [x] Change to destructure sntax jsdoc where applicable https://github.com/microsoft/TypeScript/pull/30089 <br>
 - [x] Add @throws to jodocs <br>
 - [x] Add @module to jsdocs <br>
+- [ ] Consider removing `@module` tags when nothing else is present <br>
 - [ ] Switch to fastify 🐯 <br>
 - [ ] Add aria-attributes <br>
 - [ ] Add structured data of some kind <br>
