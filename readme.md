@@ -143,6 +143,9 @@ This using fastify not express so remember that fastify doesn't expose the same 
 - [x] Switch to fastify 🐯 <br>
 - [x] Split static serving and security stuff in to plugins <br>
 - [ ] Consider Promise and Object.assign polyfills <br>
+- [ ] Add unexpected-react <br>
+- [ ] Implement e2e <br>
+- [ ] Implement coveage reports (wallaby.js) <br>
 - [ ] Add aria-attributes <br>
 - [ ] Add structured data of some kind <br>
 - [ ] Figure out why webpack resolvers are broken in less <br>
