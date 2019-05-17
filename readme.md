@@ -142,6 +142,7 @@ This using fastify not express so remember that fastify doesn't expose the same 
 - [ ] Consider removing `@module` tags when nothing else is present <br>
 - [x] Switch to fastify 🐯 <br>
 - [x] Split static serving and security stuff in to plugins <br>
+- [ ] Consider Promise and Object.assign polyfills <br>
 - [ ] Add aria-attributes <br>
 - [ ] Add structured data of some kind <br>
 - [ ] Figure out why webpack resolvers are broken in less <br>
