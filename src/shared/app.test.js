@@ -8,17 +8,21 @@ import React from 'react'
 import configureStore from 'redux-mock-store'
 // import {compose, applyMiddleware} from 'redux'
 import {createMemoryHistory} from 'history'
-import {routerMiddleware, connectRouter} from 'connected-react-router'
-import toast from './store/toast/reducer'
+// import {routerMiddleware, connectRouter} from 'connected-react-router'
+// import toast from './store/toast/reducer'
 
 const history = createMemoryHistory({initialEntries: ['/']})
 
 const initialState = {
-    toast,
+    toast: {
+        display: false,
+        message: '',
+        style: '',
+    },
     router: history,
 }
 
-const store = configureStore([routerMiddleware(history)])(initialState)
+const store = configureStore([])(initialState)
 // const store = configureStore()({
 //     // createRootReducer(history),
 //     {},
@@ -26,6 +30,8 @@ const store = configureStore([routerMiddleware(history)])(initialState)
 // })
 
 // jest.mock('react-router-dom')
+
+console.log(MemoryRouter)
 
 const expect = unexpected.clone().use(unexpectedReact)
 
@@ -42,16 +48,16 @@ describe('{app}', () => {
     it('tests something', () => {
         // shallow(<{app} {...defaultProps} />);
         expect(
-            <Provider store={store}>
-                <MemoryRouter>
-                    <App />
-                </MemoryRouter>
-            </Provider>,
+
+            <MemoryRouter>
+                <Header />
+
+            </MemoryRouter>,
             'when deeply rendered',
             'to contain',
-            <Provider />,
+            // <Provider />,
             // <div />,
-            // <Header />
+            <div />
         )
     })
 })
